@@ -34,17 +34,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtID"
-                android:layout_width="175dp"
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="37dp"
-                android:text="@string/txtID"
-                android:textSize="20sp"
-                tools:text="Face found" />
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="25dp"
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/baseline_camera_front_black_24dp" />
         </RelativeLayout>
 
 

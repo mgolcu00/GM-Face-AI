@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +36,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     private CameraSource mCameraSource = null;
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
-    private int CameraWay = CameraSource.CAMERA_FACING_BACK;
+    private int CameraWay = CameraSource.CAMERA_FACING_FRONT;
     private static final int RC_HANDLE_GMS = 9001;
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
@@ -46,16 +48,30 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
-            /* --Camera Way Convert Button Method--
 
-      Button btnConvert = findViewById(R.id.button2);
-        btnConvert.setOnClickListener(new View.OnClickListener() {
+        final int[] pressBut = {0};
+        final ImageButton btnConv = findViewById(R.id.imageButton);
+        btnConv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                CameraWay = CameraSource.CAMERA_FACING_BACK;
-                createCameraSource(CameraWay);
+            public void onClick(View view) {
+                pressBut[0]++;
+                if(pressBut[0] % 2==0){
+                    btnConv.setBackgroundResource(R.drawable.baseline_camera_front_black_24dp);
+                    CameraWay=CameraSource.CAMERA_FACING_FRONT;
+                    onPause();
+                    createCameraSource(CameraWay);
+                    startCameraSource();
+                }
+                else{
+                    btnConv.setBackgroundResource(R.drawable.baseline_camera_rear_black_24dp);
+                    CameraWay=CameraSource.CAMERA_FACING_BACK;
+                    onPause();
+                    createCameraSource(CameraWay);
+                    startCameraSource();
+                }
+
             }
-        });*/
+        });
 
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
@@ -186,7 +202,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             return new GraphicFaceTracker(mGraphicOverlay);
         }
     }
-    int idVal=0;
+
     private class GraphicFaceTracker extends Tracker<Face> {
         private GraphicOverlay mOverlay;
         private FaceGraphic mFaceGraphic;
@@ -196,10 +212,10 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             mFaceGraphic = new FaceGraphic(overlay);
         }
 
-        TextView txtFaceVal = findViewById(R.id.txtID);
+
         @Override
         public void onNewItem(int faceId, Face item) {
-            ++idVal;
+
             mFaceGraphic.setId(faceId);
         }
         private float THRESHOLD = 0.50f; //Eşik
@@ -208,7 +224,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         public void onUpdate(FaceDetector.Detections<Face> detectionResults, Face face) {
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
-            txtFaceVal.setText(idVal + "Face found");
+
         }
 
         @Override
