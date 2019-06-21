@@ -119,7 +119,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         }
 
         mCameraSource = new CameraSource.Builder(context, detector)
-                .setRequestedPreviewSize(1080, 2160)
+                .setRequestedPreviewSize(640, 480) //Back : 3024 4032   -- Front : 2448 3264
                 .setFacing(CameraWay)
                 .setRequestedFps(30.0f)
                 .build();
@@ -207,6 +207,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         private GraphicOverlay mOverlay;
         private FaceGraphic mFaceGraphic;
 
+        private float lefteyeProb=0.0f;
         GraphicFaceTracker(GraphicOverlay overlay) {
             mOverlay = overlay;
             mFaceGraphic = new FaceGraphic(overlay);
@@ -225,6 +226,10 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
             face.getLandmarks();
+            lefteyeProb = face.getIsLeftEyeOpenProbability();
+            if (lefteyeProb <= 0.2f){
+                EyeProcess(lefteyeProb);
+            }
         }
 
         @Override
@@ -235,6 +240,11 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         @Override
         public void onDone() {
             mOverlay.remove(mFaceGraphic);
+        }
+    }
+    private void EyeProcess(float f){
+        if(f<0.2f){
+            Log.i(TAG,"Left Eye Close"); // left eye Clsosed process -
         }
     }
 }
