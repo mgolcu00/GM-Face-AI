@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,6 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     private CameraSource mCameraSource = null;
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
-
     private int CameraWay = CameraSource.CAMERA_FACING_FRONT;
     private static final int RC_HANDLE_GMS = 9001;
     // permission request codes need to be < 256
