@@ -25,8 +25,23 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="50dp"
             android:backgroundTint="#A98AFF00"
-            android:shadowRadius="12"
+            android:shadowRadius="24"
             android:text="@string/button"
+            android:textColor="#D30025FF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnFaceDet2"
+            style="@android:style/Widget.Button"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="164dp"
+            android:backgroundTint="#A98AFF00"
+            android:shadowRadius="24"
+            android:text="@string/face_effects"
             android:textColor="#D30025FF"
             android:textSize="16sp" />
 

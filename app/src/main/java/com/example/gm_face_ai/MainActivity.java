@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.gm_face_ai.FaceDetection.FaceTrackerActivity;
+import com.example.gm_face_ai.FaceSpotter.FaceActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i("TAG: ","Button Clicked");
                 Intent intent = new Intent(getApplicationContext(), FaceTrackerActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        Button btnFaceSpot = findViewById(R.id.btnFaceDet2);
+        btnFaceSpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("TAG: ","Button Clicked");
+                Intent intent = new Intent(getApplicationContext(), FaceActivity.class);
                 startActivity(intent);
 
             }

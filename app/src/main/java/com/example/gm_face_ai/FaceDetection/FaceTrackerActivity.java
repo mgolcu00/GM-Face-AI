@@ -7,12 +7,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -30,16 +29,21 @@ import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class FaceTrackerActivity extends AppCompatActivity {
     private static final String TAG = "FaceTracker";
     private CameraSource mCameraSource = null;
     private CameraSourcePreview mPreview;
     private GraphicOverlay mGraphicOverlay;
+
     private int CameraWay = CameraSource.CAMERA_FACING_FRONT;
     private static final int RC_HANDLE_GMS = 9001;
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
+
+    private Map<Integer, PointF> mPreviousLandmarkPositions = new HashMap<>();
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -49,22 +53,22 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
 
+
         final int[] pressBut = {0};
         final ImageButton btnConv = findViewById(R.id.imageButton);
         btnConv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pressBut[0]++;
-                if(pressBut[0] % 2==0){
+                if (pressBut[0] % 2 == 0) {
                     btnConv.setBackgroundResource(R.drawable.baseline_camera_front_black_24dp);
-                    CameraWay=CameraSource.CAMERA_FACING_FRONT;
+                    CameraWay = CameraSource.CAMERA_FACING_FRONT;
                     onPause();
                     createCameraSource(CameraWay);
                     startCameraSource();
-                }
-                else{
+                } else {
                     btnConv.setBackgroundResource(R.drawable.baseline_camera_rear_black_24dp);
-                    CameraWay=CameraSource.CAMERA_FACING_BACK;
+                    CameraWay = CameraSource.CAMERA_FACING_BACK;
                     onPause();
                     createCameraSource(CameraWay);
                     startCameraSource();
@@ -108,6 +112,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         FaceDetector detector = new FaceDetector.Builder(context)
                 .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
+                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
                 .build();
 
         detector.setProcessor(
@@ -207,27 +212,31 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         private GraphicOverlay mOverlay;
         private FaceGraphic mFaceGraphic;
 
-        private float lefteyeProb=0.0f;
+
+        private float lefteyeProb = 0.0f;
+
         GraphicFaceTracker(GraphicOverlay overlay) {
             mOverlay = overlay;
             mFaceGraphic = new FaceGraphic(overlay);
         }
 
-
         @Override
         public void onNewItem(int faceId, Face item) {
 
             mFaceGraphic.setId(faceId);
+
         }
+
         private float THRESHOLD = 0.50f; //Eşik
 
         @Override
         public void onUpdate(FaceDetector.Detections<Face> detectionResults, Face face) {
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
-            face.getLandmarks();
+
+
             lefteyeProb = face.getIsLeftEyeOpenProbability();
-            if (lefteyeProb <= 0.2f){
+            if (lefteyeProb <= 0.2f) {
                 EyeProcess(lefteyeProb);
             }
         }
@@ -242,9 +251,11 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             mOverlay.remove(mFaceGraphic);
         }
     }
-    private void EyeProcess(float f){
-        if(f<0.2f){
-            Log.i(TAG,"Left Eye Close"); // left eye Clsosed process -
+
+    private void EyeProcess(float f) {
+        if (f < 0.2f) {
+            Log.i(TAG, "Left Eye Close"); // left eye Clsosed process -
         }
     }
+
 }

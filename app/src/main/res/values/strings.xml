@@ -6,5 +6,8 @@
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
     <string name="convert">Convert</string>
     <string name="button">Face Detection</string>
+    <string name="button2">Face Effects</string>
     <string name="txtID">TextView</string>
+    <string name="disappointed_ok">Well, okay then.</string>
+    <string name="face_effects">Face Effects</string>
 </resources>
