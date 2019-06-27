@@ -7,9 +7,10 @@
     tools:context=".MainActivity">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,18 +18,56 @@
 
         <Button
             android:id="@+id/btnFaceDet"
-            style="@android:style/Widget.Button"
-            android:layout_width="match_parent"
-            android:layout_height="101dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#A98AFF00"
-            android:shadowRadius="12"
+            android:shadowRadius="24"
             android:text="@string/button"
             android:textColor="#D30025FF"
             android:textSize="16sp" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/btnFaceDet2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#A98AFF00"
+            android:shadowRadius="24"
+            android:text="@string/face_effects"
+            android:textColor="#D30025FF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnFaceDet3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#A98AFF00"
+            android:shadowRadius="24"
+            android:text="@string/face_recognizer"
+            android:textColor="#D30025FF"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textInfo"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:autoLink="web"
+                android:text="@string/textview" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

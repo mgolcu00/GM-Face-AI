@@ -1,14 +1,19 @@
 package com.example.gm_face_ai.FaceDetection.Camera;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+
 import com.google.android.gms.common.images.Size;
 import com.google.android.gms.vision.CameraSource;
+
 import java.io.IOException;
 
 public class CameraSourcePreview extends ViewGroup {
@@ -63,6 +68,7 @@ public class CameraSourcePreview extends ViewGroup {
         }
     }
 
+
     private void startIfReady() throws IOException {
         if (mStartRequested && mSurfaceAvailable) {
             mCameraSource.start(mSurfaceView.getHolder());
@@ -106,8 +112,8 @@ public class CameraSourcePreview extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int width = 320;
-        int height = 240;
+        int width = 1024;
+        int height = 768;
         if (mCameraSource != null) {
             Size size = mCameraSource.getPreviewSize();
             if (size != null) {
