@@ -381,7 +381,7 @@ public class CameraConnectionFragment extends Fragment {
                             inputSize.getWidth(),
                             inputSize.getHeight());
 
-            // We fit the aspect ratio of TextureView to the size of preview we picked.
+            //f We fit the aspect ratio of TextureView to the size of preview we picked.
             final int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 textureView.setAspectRatio(previewSize.getWidth(), previewSize.getHeight());
@@ -548,7 +548,7 @@ public class CameraConnectionFragment extends Fragment {
 
                         @Override
                         public void onConfigureFailed(final CameraCaptureSession cameraCaptureSession) {
-                            showToast("Failed");
+                            showToast("Hata! Kamera Yüklenemedi");
                         }
                     },
                     null);

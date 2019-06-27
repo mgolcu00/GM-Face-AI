@@ -22,6 +22,7 @@ import android.graphics.Paint;
 
 import com.example.gm_face_ai.FaceDetection.Camera.GraphicOverlay;
 import com.google.android.gms.vision.face.Face;
+import com.google.android.gms.vision.face.Landmark;
 
 /**
  * Graphic instance for rendering face position, orientation, and landmarks within an associated
@@ -120,13 +121,13 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 
 
         /*face.getLandmarks();*/
-/*
-        for (Landmark landmark : face.getLandmarks()) {
-            int cx = (int) (landmark.getPosition().x *ID_X_OFFSET);
-            int cy = (int) (landmark.getPosition().y *ID_Y_OFFSET);
-            canvas.drawCircle(cx, cy, 20, mBoxPaint);
-        }
-*/
+
+/*        for (Landmark landmark : face.getLandmarks()) {
+            float cx = (landmark.getPosition().x +yOffset);
+            Float cy = (landmark.getPosition().y +xOffset);
+            canvas.drawCircle(cx, cy, 10, mBoxPaint);
+        }*/
+
 
     }
 

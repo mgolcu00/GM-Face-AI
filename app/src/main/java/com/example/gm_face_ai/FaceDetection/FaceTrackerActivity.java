@@ -231,6 +231,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
         @Override
         public void onUpdate(FaceDetector.Detections<Face> detectionResults, Face face) {
+
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
 

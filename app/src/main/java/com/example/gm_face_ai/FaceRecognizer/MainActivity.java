@@ -103,8 +103,8 @@ public class MainActivity extends CameraActivity implements OnImageAvailableList
         super.onCreate(savedInstanceState);
 
         FrameLayout container = findViewById(R.id.container);
-        initSnackbar = Snackbar.make(container, "Initializing...", Snackbar.LENGTH_INDEFINITE);
-        trainSnackbar = Snackbar.make(container, "Training data...", Snackbar.LENGTH_INDEFINITE);
+        initSnackbar = Snackbar.make(container, "Yükleniyor...", Snackbar.LENGTH_INDEFINITE);
+        trainSnackbar = Snackbar.make(container, "Makina eğitiliyor...", Snackbar.LENGTH_INDEFINITE);
 
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_edittext, null);
         EditText editText = dialogView.findViewById(R.id.edit_text);

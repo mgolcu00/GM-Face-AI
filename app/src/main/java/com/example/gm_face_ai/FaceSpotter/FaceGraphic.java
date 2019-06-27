@@ -59,6 +59,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
     private Paint mIrisPaint;
     private Paint mEyeOutlinePaint;
     private Paint mEyelidPaint;
+    private Paint mEyeEmptyPaint;
 
     private Drawable mPigNoseGraphic;
     private Drawable mMustacheGraphic;
@@ -112,6 +113,9 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         mEyelidPaint = new Paint();
         mEyelidPaint.setColor(resources.getColor(R.color.eyelid));
         mEyelidPaint.setStyle(Paint.Style.FILL);
+
+        mEyeEmptyPaint = new Paint();
+
     }
 
     /**
